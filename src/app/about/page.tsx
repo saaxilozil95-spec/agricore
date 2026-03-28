@@ -255,7 +255,7 @@ export default function AboutPage() {
                           "top" 
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#14532D] via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#14532D]/80 via-[#14532D]/20 to-transparent" />
 
                     {/* Social links on hover */}
                     <div className="absolute bottom-6 right-6 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
