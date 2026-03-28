@@ -90,10 +90,10 @@ const team = [
     socials: { linkedin: "#", twitter: "#" },
   },
   {
-    name: "Dr. Elena Vasquez",
+    name: "Dr. Abdihakim Ali",
     role: "Co-Founder & CTO",
-    bio: "A Harvard-educated agronomist and AI researcher, Elena leads AgriCore's technology division. Her pioneering work in soil sensor networks and predictive crop modeling has earned multiple industry awards and formed the backbone of AgriCore's precision agriculture platform.",
-    image: "/images/founder-elena.png",
+    bio: "A distinguished expert in agricultural engineering and precision technology, Dr. Abdihakim leads AgriCore's technical strategy. With a deep focus on innovative irrigation systems and AI-driven soil monitoring, he has been instrumental in developing our core technological infrastructure that empowers farmers across the continent.",
+    image: "/images/abdihakim.png",
     socials: { linkedin: "#", twitter: "#" },
   },
 ];
@@ -248,7 +248,12 @@ export default function AboutPage() {
                       alt={`${member.name} - ${member.role}`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      style={{ objectPosition: member.name === "Mohamed Abdullahi" ? "center 20%" : "top" }}
+                      style={{ 
+                        objectPosition: 
+                          member.name === "Mohamed Abdullahi" ? "center 12%" : 
+                          member.name === "Dr. Abdihakim Ali" ? "center 32%" : 
+                          "top" 
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#14532D] via-transparent to-transparent" />
 
