@@ -251,7 +251,7 @@ export default function AboutPage() {
                       style={{ 
                         objectPosition: 
                           member.name === "Mohamed Abdullahi" ? "center 12%" : 
-                          member.name === "Dr. Abdihakim Ali" ? "center 32%" : 
+                          member.name === "Dr. Abdihakim Ali" ? "center 40%" : 
                           "top" 
                       }}
                     />
