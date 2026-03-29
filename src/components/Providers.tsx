@@ -17,6 +17,13 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
     let animationFrameId: number;
 
+    lenis.on("scroll", ({ progress }) => {
+      const progressBar = document.getElementById("scroll-progress-bar");
+      if (progressBar) {
+        progressBar.style.transform = `scaleX(${progress})`;
+      }
+    });
+
     function raf(time: number) {
       lenis.raf(time);
       animationFrameId = requestAnimationFrame(raf);

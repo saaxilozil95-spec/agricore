@@ -73,50 +73,69 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section className="py-24 bg-[#0A1F14]">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-16">
-            {projects.map((project, i) => (
-              <ScrollReveal
-                key={i}
-                delay={i * 0.1}
-                className="group cursor-pointer"
-              >
-                <div className="overflow-hidden rounded-3xl mb-6 bg-[#14532D] aspect-[4/3] relative">
+      {/* Projects Bento Gallery */}
+      <section className="py-24 bg-[#0A1F14] relative overflow-hidden grain-texture">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-brand-primary)_0%,_transparent_70%)] opacity-[0.03] pointer-events-none" />
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
+            {projects.map((project, i) => {
+              const bentoClasses = [
+                "lg:col-span-2 lg:row-span-1", // Midwest Corn (Wide)
+                "lg:col-span-1 lg:row-span-2", // Cali Irrigation (Tall)
+                "lg:col-span-1 lg:row-span-1", // Texas Solar (Square)
+                "lg:col-span-1 lg:row-span-1", // Oregon Organic (Square)
+              ][i] || "";
+
+              return (
+                <ScrollReveal
+                  key={i}
+                  delay={i * 0.1}
+                  className={`${bentoClasses} group relative rounded-[2rem] overflow-hidden border border-white/5 cursor-pointer bg-[#14532D]/20 shadow-2xl`}
+                >
                   <img
                     src={project.img}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-75 group-hover:opacity-100"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100"
                   />
-                  {/* Hover arrow */}
-                  <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    <ArrowUpRight size={22} className="text-white" />
+                  
+                  {/* Glass Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F14] via-[#0A1F14]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                  
+                  {/* Content Layout */}
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="px-3 py-1 rounded-full bg-[#22C55E]/20 border border-[#22C55E]/30 text-[#22C55E] text-[10px] font-bold uppercase tracking-widest">
+                          {project.category}
+                        </span>
+                        <span className="text-white/40 text-xs flex items-center gap-1">
+                          <MapPin size={10} />
+                          {project.location}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 font-serif leading-tight">
+                        {project.title}
+                      </h3>
+                      
+                      <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-white/40 uppercase font-bold tracking-tighter">Impact Result</span>
+                          <span className="text-lg font-bold text-[#CA8A04]">{project.result}</span>
+                        </div>
+                        <div className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white transform group-hover:translate-x-1 transition-all duration-300">
+                          <ArrowUpRight size={20} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  {/* Bottom gradient */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0A1F14] to-transparent" />
-                  {/* Result badge */}
-                  <div className="absolute bottom-6 left-6 px-4 py-2 bg-gradient-to-r from-[#15803D] to-[#22C55E] rounded-full text-white text-xs font-bold">
-                    {project.result}
-                  </div>
-                  {/* Gold accent */}
-                  <div className="absolute top-6 left-6 w-10 h-10 border-t-2 border-l-2 border-[#CA8A04]/40 rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[#22C55E] font-semibold text-xs tracking-widest uppercase">
-                    {project.category}
-                  </span>
-                  <span className="text-gray-600">·</span>
-                  <span className="text-gray-500 text-xs flex items-center gap-1">
-                    <MapPin size={10} />
-                    {project.location}
-                  </span>
-                </div>
-                <h3 className="text-2xl font-bold text-white group-hover:text-[#22C55E] transition-colors duration-200 font-serif">
-                  {project.title}
-                </h3>
-              </ScrollReveal>
-            ))}
+
+                  {/* Top-left gold accent corner */}
+                  <div className="absolute top-6 left-6 w-10 h-10 border-t border-l border-[#CA8A04]/20 rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>

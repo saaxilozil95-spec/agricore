@@ -120,60 +120,84 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="bg-white p-8 rounded-3xl premium-shadow border border-gray-100/80 group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 h-full flex flex-col relative overflow-hidden">
-                  {/* Colored top accent bar */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
-                  {/* Hover background glow */}
-                  <div className={`absolute -top-16 -right-16 w-40 h-40 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-[0.06] rounded-full blur-3xl transition-opacity duration-500`} />
+      {/* Services Bento Grid */}
+      <section className="py-24 bg-white relative overflow-hidden grain-texture">
+        <div className="absolute top-1/4 -right-20 w-96 h-96 bg-[#22C55E]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-[#CA8A04]/5 rounded-full blur-3xl" />
 
-                  <div
-                    className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg relative z-10`}
-                  >
-                    <service.icon size={26} strokeWidth={1.8} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#14532D] mb-3 font-serif relative z-10">
-                    {service.title}
-                  </h3>
-                  <p className="text-[#14532D]/60 leading-relaxed mb-6 flex-grow relative z-10">
-                    {service.desc}
-                  </p>
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]">
+            {services.map((service, i) => {
+              const bentoClasses = [
+                "lg:col-span-2 lg:row-span-2", // Precision Agronomy (Featured)
+                "lg:col-span-1 lg:row-span-1", // Smart Irrigation
+                "lg:col-span-1 lg:row-span-1", // Solar Integration
+                "lg:col-span-1 lg:row-span-2", // Automated Fleets
+                "lg:col-span-2 lg:row-span-1", // Genetic Selection
+                "lg:col-span-1 lg:row-span-1", // Climate Monitoring
+              ][i];
 
-                  {/* Feature checklist */}
-                  <ul className="space-y-2.5 mb-6 relative z-10">
-                    {service.features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-center gap-2.5 text-sm text-[#14532D]/70"
-                      >
-                        <div className="w-5 h-5 rounded-md bg-[#F0FDF4] flex items-center justify-center shrink-0">
-                          <Check
-                            size={12}
-                            className="text-[#22C55E]"
-                          />
+              const stats = [
+                { label: "Active Fields", value: "1,240" },
+                { label: "Water Saved", value: "32%" },
+                { label: "Energy Output", value: "4.2MW" },
+                { label: "Fleet Size", value: "85 units" },
+                { label: "DNA Matches", value: "15k+" },
+                { label: "Sensors Active", value: "24/7" },
+              ][i];
+
+              return (
+                <ScrollReveal key={i} delay={i * 0.1}>
+                  <div className={`${bentoClasses} group relative h-full rounded-[2.5rem] border border-gray-100/80 bg-white p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-green-900/10 flex flex-col justify-between overflow-hidden cursor-pointer`}>
+                    {/* Background noise and gradient */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-[#F0FDF4] to-white z-0" />
+                    
+                    <div className="relative z-10 h-full flex flex-col">
+                      <div className="flex justify-between items-start mb-6">
+                        <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                          <service.icon size={26} strokeWidth={1.8} />
                         </div>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                        <div className="px-3 py-1 rounded-full bg-gray-50 border border-gray-100/50 text-[10px] font-bold tracking-widest uppercase text-[#14532D]/40 group-hover:bg-white group-hover:text-[#15803D] transition-colors duration-300">
+                          PRO SOLUTION
+                        </div>
+                      </div>
 
-                  <div className="mt-auto border-t border-gray-100 pt-6 relative z-10">
-                    <Link
-                      href="/contact"
-                      className="text-[#15803D] font-semibold flex items-center gap-1 group-hover:gap-3 transition-all duration-300 text-sm cursor-pointer"
-                    >
-                      Get a consultation{" "}
-                      <ArrowRight size={14} />
-                    </Link>
+                      <div className="flex-grow">
+                        <h3 className={`font-serif leading-tight text-[#14532D] mb-3 ${bentoClasses.includes('row-span-2') ? 'text-3xl lg:text-4xl font-bold' : 'text-xl lg:text-2xl font-bold'}`}>
+                          {service.title}
+                        </h3>
+                        <p className={`text-[#14532D]/60 leading-relaxed line-clamp-3 ${bentoClasses.includes('col-span-2') ? 'max-w-md' : ''}`}>
+                          {service.desc}
+                        </p>
+                      </div>
+
+                      <div className="mt-8 flex items-end justify-between">
+                        <div className="space-y-1">
+                          <p className="text-[10px] uppercase tracking-tighter text-[#CA8A04] font-bold">
+                            {stats.label}
+                          </p>
+                          <p className="text-2xl font-serif text-[#14532D] font-bold">
+                            {stats.value}
+                          </p>
+                        </div>
+                        <Link 
+                          href="/contact"
+                          className="w-10 h-10 rounded-full bg-[#14532D]/5 flex items-center justify-center text-[#14532D] group-hover:bg-[#14532D] group-hover:text-white transition-all duration-300 transform group-hover:translate-x-1"
+                        >
+                          <ArrowRight size={18} />
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Decorative path lines (Inspiration: 21st.dev Background Paths) */}
+                    <svg className="absolute -bottom-10 -right-10 w-40 h-40 opacity-[0.03] text-[#14532D] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none" viewBox="0 0 100 100" fill="currentColor">
+                      <path d="M10,90 Q50,10 90,90 T170,90" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                      <path d="M10,80 Q50,0 90,80 T170,80" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                    </svg>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>

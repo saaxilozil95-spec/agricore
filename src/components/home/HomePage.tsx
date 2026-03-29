@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Testimonials } from "@/components/home/Testimonials";
 import Link from "next/link";
 
 const partners = [
@@ -409,50 +410,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 6. TESTIMONIALS ═══ */}
-      <section className="py-28 organic-gradient relative">
-        <div className="container mx-auto px-6 md:px-12">
-          <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-[#CA8A04] font-semibold tracking-wider text-sm uppercase">
-                Testimonials
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#14532D] mt-4 mb-6">
-                What Our Partners Say
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((t, i) => (
-              <ScrollReveal key={i} delay={i * 0.15}>
-                <div className="bg-white p-8 rounded-3xl premium-shadow border border-gray-100/80 relative h-full flex flex-col group hover:-translate-y-1 transition-transform duration-300">
-                  {/* Quote mark with accent */}
-                  <div className="text-[#BBF7D0] text-6xl font-serif leading-none mb-4 group-hover:text-[#22C55E]/40 transition-colors">
-                    &ldquo;
-                  </div>
-                  <p className="text-[#14532D]/70 leading-relaxed flex-grow mb-8 text-base italic">
-                    {t.quote}
-                  </p>
-                  <div className="flex items-center gap-4 mt-auto">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#15803D] to-[#22C55E] flex items-center justify-center text-white font-bold text-sm shadow-md shadow-green-500/10">
-                      {t.initials}
-                    </div>
-                    <div>
-                      <p className="font-bold text-[#14532D] text-sm">
-                        {t.name}
-                      </p>
-                      <p className="text-[#14532D]/50 text-xs">{t.role}</p>
-                    </div>
-                  </div>
-                  {/* Gold accent corner refined */}
-                  <div className="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 border-[#CA8A04]/20 rounded-tr-xl group-hover:border-[#CA8A04]/60 transition-colors" />
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ═══ 6. TESTIMONIALS (AgriCore 2.0 Marquee) ═══ */}
+      <Testimonials />
 
       {/* ═══ 7. CTA BANNER ═══ */}
       <section className="relative py-32 overflow-hidden">
